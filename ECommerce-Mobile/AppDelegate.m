@@ -12,6 +12,7 @@
 #import "CartViewController.h"
 #import "SettingsViewController.h"
 #import "Reachability.h"
+#import <ADEUMInstrumentation/ADEUMInstrumentation.h>
 
 @implementation AppDelegate
     @synthesize managedObjectContext = _managedObjectContext;
@@ -37,6 +38,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [ADEumInstrumentation initWithKey: @"AD-AAB-AAM-JVV"];
+    
     NSSetUncaughtExceptionHandler(&HandleExceptions);
     
     [[NSNotificationCenter defaultCenter] addObserver:self
