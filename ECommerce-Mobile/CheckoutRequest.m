@@ -8,6 +8,7 @@
 
 #import "CheckoutRequest.h"
 #import "AppDelegate.h"
+#import <ADEUMInstrumentation/ADEUMInstrumentation.h>
 
 @implementation CheckoutRequest
 @synthesize checkoutResponse;
@@ -18,6 +19,14 @@
 }
 
 -(void) checkout {
+    // AppDynamics Information Point for checkout method - START
+    id tracker = [ADEumInstrumentation beginCall:self selector:_cmd];
+    NSLog(@"----- Starting Info Point for checkout");
+    
+    // Stop custom timer for total shopping time (between app open and start of checkout)
+    [ADEumInstrumentation stopTimerWithName:@"ShoppingTime"];
+    NSLog(@"----- Stopping Custom Timer for Total Shopping Time");
+    
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     if ([appDelegate.session shouldLogin])  {
         [appDelegate.session login];
@@ -39,6 +48,10 @@
         checkoutResponse = [NSString stringWithUTF8String:"Could not connect to the server"];
     else
         checkoutResponse = [NSString stringWithUTF8String:responseBytes];
+    
+    // AppDynamics Information Point for checkout method - END
+    NSLog(@"----- Ending Info Point for checkout");
+    [ADEumInstrumentation endCall:tracker];
 }
 
 

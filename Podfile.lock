@@ -1,12 +1,16 @@
 PODS:
-  - KIF (3.3.0):
-    - KIF/Core (= 3.3.0)
-  - KIF/Core (3.3.0)
+  - AppDynamicsAgent (45.1.1164)
 
 DEPENDENCIES:
-  - KIF (~> 3.3)
+  - AppDynamicsAgent
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AppDynamicsAgent
 
 SPEC CHECKSUMS:
-  KIF: 0a82046d06f3648799cac522d2d0f7934214caac
+  AppDynamicsAgent: bab115604332288830428bfc1d4f62fd2f073003
 
-COCOAPODS: 0.37.2
+PODFILE CHECKSUM: 6c01473a7b52fa67cdc2f9858e0f567fafd7bbd5
+
+COCOAPODS: 1.5.3

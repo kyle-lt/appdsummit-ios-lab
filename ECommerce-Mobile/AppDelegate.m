@@ -38,7 +38,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    // Initialize AppD instrumentation
     [ADEumInstrumentation initWithKey: @"AD-AAB-AAM-JVV"];
     
     NSSetUncaughtExceptionHandler(&HandleExceptions);
@@ -85,6 +85,11 @@
 
 }
 
+/*
+- (void) onUserLoggedIn:(NSString *)username {
+    [ADEumInstrumentation setUserData:@"username" value:username];
+}
+*/
 
 -(void) setupReachabilityNotification {
     NSURL *url = [[NSURL alloc] initWithString:_url];
@@ -335,6 +340,12 @@
         _appKey = [standardDefaults objectForKey:kAppKey];
         _collectorUrl = [standardDefaults objectForKey:kCollectorUrl];
         NSLog(@"username is when changed %@", _username);
+        [ADEumInstrumentation setUserData: @"username" value:_username];
+        NSLog(@"ktully - the username is %@", _username);
+        
+        // Start custom timer for total shopping time (between app open and start of checkout)
+        [ADEumInstrumentation startTimerWithName:@"ShoppingTime"];
+        NSLog(@"----- Starting Custom Timer for Total Shopping Time");
     }
 
 
