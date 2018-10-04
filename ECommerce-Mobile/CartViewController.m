@@ -121,6 +121,7 @@
                                           otherButtonTitles:nil];
 //    [alert setAccessibilityLabel:@"CheckoutDialog"];
 //    [alert set]
+    NSLog(@"request.checkoutResponse=%@",request.checkoutResponse);
     [alert show];
     [self clearCart:@"CartItem"];
     

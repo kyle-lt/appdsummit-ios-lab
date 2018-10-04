@@ -10,6 +10,7 @@
 #import "ShoppingCartSession.h"
 #import "AppDelegate.h"
 #import "CartViewController.h"
+#import <ADEUMInstrumentation/ADEUMInstrumentation.h>
 
 @interface DetailViewController ()
 
@@ -167,6 +168,10 @@
     // do something with the data
     // receivedData is declared as a method instance elsewhere
     NSLog(@"Succeeded! Received data");
+    
+    // Leaving breadcrumb at checkout start
+    NSLog(@"----- Leaving breadcrumb at Cart View Controller after Adding Item");
+    [ADEumInstrumentation leaveBreadcrumb:(NSString *)@"AddItemToCart"];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

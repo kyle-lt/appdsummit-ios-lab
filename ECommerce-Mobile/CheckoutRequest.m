@@ -27,6 +27,10 @@
     [ADEumInstrumentation stopTimerWithName:@"ShoppingTime"];
     NSLog(@"----- Stopping Custom Timer for Total Shopping Time");
     
+    // Leaving breadcrumb at checkout start
+    NSLog(@"----- Leaving breadcrumb at checkout start");
+    [ADEumInstrumentation leaveBreadcrumb:(NSString *)@"CheckoutStart"];
+    
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     if ([appDelegate.session shouldLogin])  {
         [appDelegate.session login];
@@ -41,8 +45,14 @@
     NSURLResponse *response = nil;
     NSError *error = nil;
     
+    
+    
     NSData *body = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSLog(@"Response error %@ and ressponse body %@", error, body);
+    
+    NSLog(@"checkout request=%@", request.HTTPBody);
+    NSLog(@"checkout response=%@", response);
+    
     const char *responseBytes = [body bytes];
     if (responseBytes == nil)
         checkoutResponse = [NSString stringWithUTF8String:"Could not connect to the server"];

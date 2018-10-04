@@ -17,14 +17,13 @@
     NSXMLParser     *parserShop;
     NSEntityDescription *entity;
 
-
 - (void)parserDidStartDocument:(NSXMLParser *)parserShop {
     self.cartItems = [[NSMutableDictionary alloc] init];
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parserShop {
     NSLog(@"Doc Parsed");
-    NSLog(@"Count of items %d", [self.cartItems count] );
+    NSLog(@"Count of items %lu", (unsigned long)[self.cartItems count] );
 }
 
 - (void)parser:(NSXMLParser *)parserShop didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
